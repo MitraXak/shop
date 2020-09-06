@@ -2,6 +2,7 @@ const Product = async function(Sequelize, sequelize)
 {
     const {ReviewsProduct} = require("./ReviewsProduct");
     const {PhotoModel} = require("./Photo");
+    const {Category} = require("./Category");
     let Product = sequelize.define('Product',{
         idProduct:{
             primaryKey: true,
@@ -32,6 +33,12 @@ const Product = async function(Sequelize, sequelize)
             allowNull: false,
             allowNull: ''
         },
+        CategoryId: {
+            type: Sequelize.UUID,
+            unique: true,
+            allowNull: false,
+            defaultValue: 0,
+        },
         Sell: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -54,6 +61,9 @@ const Product = async function(Sequelize, sequelize)
     })
     let Review = await ReviewsProduct(Sequelize, sequelize);
     let Phot = await PhotoModel(Sequelize, sequelize);
+    let Categor = await Category(Sequelize, sequelize);
+
+    Product.hasMany(Categor, {foreignKey: "CategoryId"});
     Product.hasMany(Phot, { onDelete: "cascade", foreignKey: "PhotoId" });
     Product.hasMany(Review, { onDelete: "cascade", foreignKey: "ReviewsId"});
     return Product;

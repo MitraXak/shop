@@ -1,5 +1,4 @@
-const auth = function(){
-    const express = require("express");
+const auth = function(express){
     const Router = express.Router();
 
     //login
