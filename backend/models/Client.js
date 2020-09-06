@@ -1,13 +1,21 @@
-const { Sequelize } = require("sequelize/types")
 
-const Client = function(Sequelize, sequelize)
+
+const Client = async function(Sequelize, sequelize)
 {
     const {Product} = require("./Product");
-    const {Reviews} = require("./Reviews");
+    const {ReviewsClient} = require("./ReviewsClient");
     let Client = sequelize.define('Client',{
+        idClient:{
+            primaryKey: true,
+            type: Sequelize.UUID,
+            unique: true,
+            allowNull: false,
+            defaultValue: sequelize.fn('uuid_generate_v4'),
+        },
         Fio:{
-            type: Sequelize.String,
-            allowNull: false
+            type: Sequelize.STRING,
+            allowNull: false,
+            defaultValue: ''
         },
         CounEye: {
             type: Sequelize.INTEGER,
@@ -15,41 +23,53 @@ const Client = function(Sequelize, sequelize)
             defaultValue: 0
         },
         Phone: {
-            type: Sequelize.String,
+            type: Sequelize.STRING,
             allowNull: false,
+            defaultValue: 0
         },
         Email: {
-            type: Sequelize.String,
+            type: Sequelize.STRING,
             allowNull: true,
             defaultValue: ''
         },
         Password: {
-            type: Sequelize.String,
+            type: Sequelize.STRING,
             allowNull: true,
             defaultValue: ''
         },
-        Reviews: {
-            type: Sequelize.String,
+        ReviewsId: {
+            type: Sequelize.UUID,
             allowNull: true,
-            defaultValue: ''
+            set: function(val){
+                return this.setDataValue('Reviews', JSON.stringify(val));
+            },
+            get: function(){
+                return JSON.parse(this.getDataValue('Reviews'));
+            }
         },
-        Products: {
-            type: Sequelize.String,
-            allowNull: false
+        ProductsId: {
+            type: Sequelize.UUID,
+            allowNull: true,
         },
-        Basket: {
-            type: Sequelize.String,
-            allowNull: false
+        BasketId: {
+            type: Sequelize.UUID,
+            allowNull: true,
         },
         Photo: {
-            type: Sequelize.String,
+            type: Sequelize.STRING,
             allowNull: false
         },
+        Like: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
     })
-    let Review = Reviews();
-    let Prod = Product();
-    Client.hasMany(Prod, { onDelete: "cascade" });
-    Client.hasMany(Review, { onDelete: "cascade" });
+    let Review = await ReviewsClient(Sequelize, sequelize);
+    let Prod = await Product(Sequelize, sequelize);
+    Client.hasMany(Prod, { onDelete: "cascade", foreignKey: "ProductsId" });
+    Client.hasMany(Review, { onDelete: "cascade", foreignKey: "ReviewsId"});
+    Client.hasMany(Prod, { onDelete: "cascade", foreignKey: "BasketId"});
     return Client;
 }
 

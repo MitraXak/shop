@@ -2,16 +2,11 @@
 {
     
     const {dialect, port, database, user, passwd} = require("./config/config");
-    const connectDb = await function ()
-    {
-        const Sequelize = require("sequelize");
-        const sequelize = new Sequelize(database, user, passwd, {
-            dialect: dialect,
-        })
-    }
+    //модуль подключения к бд
+    const {ConnectDb} = require("./service/connectdb");
+    await ConnectDb(dialect, database, user, passwd);
     try {
         //connect check for start to database
-        connectDb();
         const express = require("express");
         const app = express();
         //rout main page

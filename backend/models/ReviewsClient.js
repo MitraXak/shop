@@ -1,23 +1,20 @@
-
-
-const PhotoModel = function(Sequelize, sequelize)
+const ReviewsClient = function(Sequelize, sequelize)
 {
-    let Photo = sequelize.define('Photo', {
-        idPhoto:{
+    let Reviews = sequelize.define('Reviews',{
+        idReviews:{
             primaryKey: true,
             type: Sequelize.UUID,
             unique: true,
             allowNull: false,
+            autoIncrement: true,
             defaultValue: sequelize.fn('uuid_generate_v4'),
         },
-        link:{
+        Text:{
             type: Sequelize.STRING,
             allowNull: false
         },
-    }, {
-        timestamps: false
-    });
-    return Photo;
+    })
+    return Reviews;
 }
 
-module.exports = {PhotoModel};
+module.exports = {ReviewsClient};
