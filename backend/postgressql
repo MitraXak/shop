@@ -1,0 +1,14 @@
+В ходе установки была создана учетную запись пользователя postgres, 
+которая связана с используемой по умолчанию ролью postgres. 
+Существует несколько способов использования этой учетной записи для доступа к Postgres. 
+Один из способов — переход к учетной записи postgres на вашем сервере с помощью следующей команды:
+
+-sudo -u postgres psql
+\q - exit
+
+Add user
+sudo -u postgres createuser --interactive
+sudo -u postgres createdb nameuser
+
+Information abou connection
+\conninfo
