@@ -1,0 +1,20 @@
+.logo, .logoForm{
+    display: flex;
+    justify-content: center;
+    max-width: 320px;
+}
+
+.logo{
+    .containerLogo{
+        a{
+            font-size: 1.5rem;
+            color: black;
+        }
+    }
+}
+.logoForm{
+        a{
+            font-size: 0.8rem;
+            color: #fff;
+        }
+}

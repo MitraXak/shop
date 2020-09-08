@@ -1,0 +1,15 @@
+.button{
+    .btn{
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        background: linear-gradient(180deg, #1AF9EB 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #397A7E 0%, rgba(255, 255, 255, 0) 100%), #13ECC5;
+        border: 1px solid #FBF0F0;
+        .line{
+            margin: 5px auto;
+            width: 25px;
+            height: 0px;
+            border: 2px solid #FBF0F0;
+        }
+    }
+}

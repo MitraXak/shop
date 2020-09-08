@@ -1,0 +1,27 @@
+.headMob{
+    display: none;
+}
+.showHead{
+    position: absolute;
+    top: 0;
+    align-items: center;
+    display: flex;
+    width: 320px;
+    height: 120px;
+    padding: 20px 10px 20px 10px;
+    background: linear-gradient(180deg, #0BD1DE 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #14CCB6 0%, rgba(255, 255, 255, 0) 100%), #3FE7D3;
+
+    .user{
+        background: #ffffff;
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+        margin-right: 10px;
+    }
+    .forms{
+        a{
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+}

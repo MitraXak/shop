@@ -1,0 +1,13 @@
+.input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 5px;
+}
+
+#inputLogin, #inputPassword, #inputPasswordSecond, #phone, #email{
+    border: none;
+    border-bottom: 0.5px solid #000000;
+    height: 15px;
+    font-size: 0.5rem;
+}
